@@ -1,12 +1,12 @@
 # UART Communication Overview 📡
 
+**UART** (Universal Asynchronous Receiver Transmitter) is a serial communication protocol that transmits data without a shared clock signal between the transmitter and receiver.
+
 ## Physical Connections
 
 - **TX (Transmit)**: Output from sender → Input to receiver
 - **RX (Receive)**: Input to sender ← Output from receiver
 - **GND (Ground)**: Common reference voltage
-
-**UART** (Universal Asynchronous Receiver Transmitter) is a serial communication protocol that transmits data without a shared clock signal between the transmitter and receiver. However, for a success data transfer, both devices must agree on these things:
 
 ## Required Settings
 
