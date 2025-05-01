@@ -1,6 +1,6 @@
 # UART Communication Overview 📡
 
-**UART** (Universal Asynchronous Receiver Transmitter) is a serial communication protocol that transmits data without a shared clock signal between the transmitter and receiver.
+**UART** (Universal Asynchronous Receiver Transmitter) is a (hardware) serial communication protocol that transmits data without a shared clock signal between the transmitter and receiver.
 
 ## Physical Connections
 
