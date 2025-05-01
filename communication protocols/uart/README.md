@@ -37,9 +37,10 @@
   - Line is held high (1) when no transmission occurs - This state indicates no data being sent
 
 - **Start Bit**
-- Transmitter pulls line low (0) for one bit period
-- Signals the beginning of a data frame
-- Receiver detects this falling edge to synchronize timing
+
+  - Transmitter pulls line low (0) for one bit period
+  - Signals the beginning of a data frame
+  - Receiver detects this falling edge to synchronize timing
 
 - **Data Bits**
 
