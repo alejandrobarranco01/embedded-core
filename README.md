@@ -14,8 +14,6 @@ A growing collection of **embedded systems & programming concepts** explained in
 
 [`📂 endianess/`](https://github.com/alejandrobarranco01/Embedded-Information/tree/main/endianess)
 
-## 🔍 Current Topics
-
 ## 🚀 How to Use
 
 1. Pick a topic folder
