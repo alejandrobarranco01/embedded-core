@@ -15,7 +15,17 @@
    - Transmission speed (bits per second)
    - Must match on both devices
 
-2. **Parity**
+2. **Data bits**
+
+   - Size: 5–9 bits
+   - **Most common**: 8 bits
+
+3. **Stop bits**
+
+   - Options: 1 or 2 bits
+   - **Most common**: 1 bit
+
+4. **Parity**
 
    - Basic error-detection method that adds a single bit to each data frame
    - **How it works**:
