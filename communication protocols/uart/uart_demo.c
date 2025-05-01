@@ -8,23 +8,26 @@
 
 typedef struct {
   uint32_t baud_rate;
-  uint8_t parity; // 0=None, 1=Even, 2=Odd
+  uint8_t parity;
   uint8_t stop_bits;
 } UART_Config;
 
+/*
+ * Printing different representations of the data
+ */
 void print_binary_conversion(uint8_t data) {
   printf("\nData Conversion:\n");
   printf("Decimal: %u\n", data);
   printf("Hex: 0x%02X\n", data);
 
-  printf("Binary (MSB first): ");
+  printf("Binary Representation: ");
   for (int i = 7; i >= 0; i--) {
     printf("%d", (data >> i) & 1);
     if (i == 4)
       printf(" ");
   }
 
-  printf("\nBinary (LSB first - UART order): ");
+  printf("\nReversed Binary Representation (UART order): ");
   for (int i = 0; i < 8; i++) {
     printf("%d", (data >> i) & 1);
     if (i == 3)
@@ -33,6 +36,10 @@ void print_binary_conversion(uint8_t data) {
   printf("\n");
 }
 
+/*
+ * Function for printing out the bit in the transmission
+ * to simulate what the timeline may look like
+ */
 void print_uart_frame(uint8_t data, const UART_Config *config) {
   printf("\nUART Frame Visualization:\n");
   printf("Idle\tStart\t");
@@ -44,15 +51,21 @@ void print_uart_frame(uint8_t data, const UART_Config *config) {
     printf("Stop\t");
   printf("\n");
 
+  unsigned int sleepTimeVisualization = (10000000000 / config->baud_rate);
+
   // Idle state
   printf(HIGH "\t");
 
+  usleep(sleepTimeVisualization);
+
   // Start bit
   printf(LOW "\t");
+  usleep(sleepTimeVisualization);
 
   // Data bits
   for (int i = 0; i < 8; i++) {
     printf("%s\t", (data >> i) & 1 ? HIGH : LOW);
+    usleep(sleepTimeVisualization);
   }
 
   // Parity bit
@@ -64,6 +77,7 @@ void print_uart_frame(uint8_t data, const UART_Config *config) {
     }
     uint8_t parity_bit = (config->parity == 1) ? (ones % 2) : !(ones % 2);
     printf("%s\t", parity_bit ? HIGH : LOW);
+    usleep(sleepTimeVisualization);
   }
 
   // Stop bits
@@ -74,22 +88,21 @@ void print_uart_frame(uint8_t data, const UART_Config *config) {
   printf("\n");
 }
 
+/*
+ * Simulate UART transmission
+ */
 void simulate_transmission(uint8_t data, const UART_Config *config) {
   printf("\nSimulating UART Transmission at %u baud:\n", config->baud_rate);
-  unsigned int bit_duration = 1000000 / config->baud_rate;
 
   printf("TX Line: " HIGH " (Idle)\n");
-  usleep(bit_duration * 2);
 
   printf("TX Line: " LOW " (Start bit)\n");
-  usleep(bit_duration);
 
   for (int i = 0; i < 8; i++) {
     printf("TX Line: %s (Data bit %d - %d)\n",
            (data >> i) & 1 ? HIGH : LOW,
            i,
            (data >> i) & 1);
-    usleep(bit_duration);
   }
 
   if (config->parity) {
@@ -102,18 +115,17 @@ void simulate_transmission(uint8_t data, const UART_Config *config) {
     printf("TX Line: %s (Parity bit - %d)\n",
            parity_bit ? HIGH : LOW,
            parity_bit);
-    usleep(bit_duration);
   }
 
   for (int i = 0; i < config->stop_bits; i++) {
     printf("TX Line: " HIGH " (Stop bit %d)\n", i + 1);
-    usleep(bit_duration);
   }
 
   printf("TX Line: " HIGH " (Return to idle)\n");
 }
 
 int main() {
+  setvbuf(stdout, NULL, _IONBF, 0); // Disable output buffering
   UART_Config config;
   uint8_t data;
 
