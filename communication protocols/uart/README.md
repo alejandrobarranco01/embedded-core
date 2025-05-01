@@ -18,17 +18,15 @@
      2. Adds parity bit to make the total 1s either even or odd
      3. Receiver verifies the total 1s match the expected parity
         Options:
+        - **None**: No error checking
+        - **Odd**: Total 1s (data bits + parity bit) must be odd
+        - **Even**: Total 1s (data bits + parity bit) must be even
 
-     - **None**: No error checking
-     - **Odd**: Total 1s (data + parity) must be odd
-     - **Even**: Total 1s must be even
-
-     **Error Detection**:
-
-     - Receiver counts all 1s in received data + parity bit
-     - If count doesn't match parity setting:
-       - **Odd parity**: Even number of 1s → Error
-       - **Even parity**: Odd number of 1s → Error
+     - **Error Detection**:
+       - Receiver counts all 1s in received data + parity bit
+       - If count doesn't match parity setting:
+         - **Odd parity**: Even number of 1s → Error
+         - **Even parity**: Odd number of 1s → Error
 
 ## Communication Process
 
