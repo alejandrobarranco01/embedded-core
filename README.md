@@ -13,6 +13,7 @@ A growing collection of **embedded systems & programming concepts** explained in
 ## 🔍 Current Topics
 
 [`📂 endianess/`](https://github.com/alejandrobarranco01/Embedded-Information/tree/main/endianess)
+[`📂 communication protocols/`](https://github.com/alejandrobarranco01/embedded-core/tree/main/communication%20protocols)
 
 ## 🚀 How to Use
 
