@@ -40,8 +40,8 @@
 
 3. **SPI Mode**
 
-   - Combination of CPOL and CPHA:
-     ![SPI modes](image.png)
+   ![SPI modes](image.png)
+
    - All devices must use same mode
 
 4. **Data Frame Size**
