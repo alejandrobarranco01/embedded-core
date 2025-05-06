@@ -39,8 +39,8 @@
      - **0**: Master writes to slave
      - **1**: Master reads from slave
    - **ACK/NACK**:
-     - Receiver sends **ACK (0)** after each byte
-     - **NACK (1)** indicates failure/no acknowledgment
+     - Receiver sends ACK (0) after each byte
+     - NACK (1) indicates failure/no acknowledgment
 
 ## Communication Process
 
